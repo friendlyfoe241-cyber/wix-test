@@ -1,10 +1,17 @@
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+import wixWindow from 'wix-window';
+
+const BOX29_SELECTOR = "#box29";
+const SIDE_PADDING = 10;
 
 $w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
+    resizeBox29();
+    wixWindow.onResize(() => resizeBox29());
 });
+
+function resizeBox29() {
+    const viewportWidth = wixWindow.windowSize.width;
+    const newWidth = Math.max(0, viewportWidth - SIDE_PADDING * 2);
+
+    $w(BOX29_SELECTOR).x = SIDE_PADDING;
+    $w(BOX29_SELECTOR).changeSize(newWidth, $w(BOX29_SELECTOR).height);
+}
